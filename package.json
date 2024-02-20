@@ -1,7 +1,9 @@
 {
   "name": "fuxiaochen-admin",
+  "author": "付小晨",
+  "homepage": "https://github.com/aifuxi/fuxiaochen-admin",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +18,7 @@
       "eslint --cache --fix"
     ]
   },
+  "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
