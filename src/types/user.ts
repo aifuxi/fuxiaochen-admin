@@ -1,6 +1,13 @@
 import { Model } from '@/types/common';
 
-export interface User extends Model {
+export type User = Model & {
   name: string;
   isAdmin: boolean;
-}
+};
+
+export type CreateUserParams = {
+  name: string;
+  isAdmin: boolean;
+};
+
+export type UpdateUserParams = Partial<CreateUserParams>;

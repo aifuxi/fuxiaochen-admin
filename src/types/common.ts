@@ -8,8 +8,8 @@ export interface ResponseTotalStruct<K> extends ResponseStruct<K> {
   total: number;
 }
 
-export interface Model {
+export type Model = {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-}
+};
