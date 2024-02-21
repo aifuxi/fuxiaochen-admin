@@ -13,3 +13,8 @@ export type Model = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type PaginationParams = {
+  page: number;
+  limit: number;
+};

@@ -1,4 +1,4 @@
-import { Model } from '@/types/common';
+import { Model, PaginationParams } from '@/types/common';
 
 export type Category = Model & {
   name: string;
@@ -11,3 +11,4 @@ export type CreateCategoryParams = {
 };
 
 export type UpdateCategoryParams = Partial<CreateCategoryParams>;
+export type GetCategoriesParams = PaginationParams;

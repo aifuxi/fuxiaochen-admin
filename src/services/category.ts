@@ -1,10 +1,11 @@
-import { x } from '@/utils/request.ts';
+import { stringifyParams } from '@/utils/helper';
+import { x } from '@/utils/request';
 
-import { Category, CreateCategoryParams, UpdateCategoryParams } from '@/types/category';
+import { Category, CreateCategoryParams, GetCategoriesParams, UpdateCategoryParams } from '@/types/category';
 import { ResponseStruct, ResponseTotalStruct } from '@/types/common';
 
-export const getCategories = (): Promise<ResponseTotalStruct<Category[]>> => {
-  return x.get('/categories');
+export const getCategories = (params: GetCategoriesParams): Promise<ResponseTotalStruct<Category[]>> => {
+  return x.get(`/categories?${stringifyParams(params)}`);
 };
 
 export const getCategory = (id: string): Promise<ResponseStruct<Category>> => {

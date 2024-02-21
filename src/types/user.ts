@@ -1,4 +1,4 @@
-import { Model } from '@/types/common';
+import { Model, PaginationParams } from '@/types/common';
 
 export type User = Model & {
   name: string;
@@ -11,3 +11,5 @@ export type CreateUserParams = {
 };
 
 export type UpdateUserParams = Partial<CreateUserParams>;
+
+export type GetUsersParams = PaginationParams;

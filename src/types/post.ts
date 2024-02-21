@@ -1,5 +1,5 @@
 import { Category } from '@/types/category';
-import { Model } from '@/types/common';
+import { Model, PaginationParams } from '@/types/common';
 import { Tag } from '@/types/tag';
 
 export type Post = Model & {
@@ -31,3 +31,5 @@ export type CreatePostParams = {
 };
 
 export type UpdatePostParams = Partial<CreatePostParams>;
+
+export type GetPostsParams = PaginationParams;
