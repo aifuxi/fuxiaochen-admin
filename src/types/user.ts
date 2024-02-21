@@ -1,7 +1,6 @@
-export type User = {
+import { Model } from '@/types/common';
+
+export interface User extends Model {
   name: string;
   isAdmin: boolean;
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
+}

@@ -7,7 +7,7 @@ import { Avatar, Nav } from '@douyinfe/semi-ui';
 import { NavProps } from '@douyinfe/semi-ui/lib/es/navigation';
 import { NavItemProps } from '@douyinfe/semi-ui/lib/es/navigation/Item';
 
-import { PATH } from '@/constants/path.ts';
+import { PATH } from '@/constants/path';
 
 const navbarNavItems: NavItemProps[] = [
   { itemKey: 'Home', text: 'Home' },

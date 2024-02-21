@@ -1,8 +1,8 @@
 import { Toast } from '@douyinfe/semi-ui';
 import axios from 'axios';
 
-import { CODE } from '@/constants/code.ts';
-import { PATH } from '@/constants/path.ts';
+import { CODE } from '@/constants/code';
+import { PATH } from '@/constants/path';
 
 export const x = axios.create({
   baseURL: PATH.API_BASE_URL,

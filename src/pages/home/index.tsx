@@ -1,7 +1,7 @@
 import { IllustrationConstruction, IllustrationConstructionDark } from '@douyinfe/semi-illustrations';
 import { Empty } from '@douyinfe/semi-ui';
 
-import PageLayout from '@/components/layout/page-layout.tsx';
+import PageLayout from '@/components/layout/page-layout';
 
 const HomePage = () => {
   return (

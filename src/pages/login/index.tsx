@@ -6,10 +6,10 @@ import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useMutation } from '@tanstack/react-query';
 import { isUndefined } from 'lodash-es';
 
-import { PATH } from '@/constants/path.ts';
+import { PATH } from '@/constants/path';
 import { QUERY } from '@/constants/query';
 
-import { login } from '@/services/auth.ts';
+import { login } from '@/services/auth';
 import { useCurrentUserStore } from '@/stores/current-user';
 import { LoginParams } from '@/types/auth';
 

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { PATH } from '@/constants/path.ts';
+import { PATH } from '@/constants/path';
 
 import Layout from '@/components/layout';
 import HomePage from '@/pages/home';

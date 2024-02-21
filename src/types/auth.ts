@@ -1,4 +1,4 @@
-import { User } from '@/types/user.ts';
+import { User } from '@/types/user';
 
 export type LoginParams = {
   name: string;
