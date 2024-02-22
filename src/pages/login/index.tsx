@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { Button, Form, Toast, Typography } from '@douyinfe/semi-ui';
 import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
@@ -8,6 +8,7 @@ import { isUndefined } from 'lodash-es';
 
 import { PATH } from '@/constants/path';
 import { QUERY } from '@/constants/query';
+import { REDIRECT } from '@/constants/unknown.ts';
 
 import { login } from '@/services/auth';
 import { useCurrentUserStore } from '@/stores/current-user';
@@ -15,8 +16,13 @@ import { LoginParams } from '@/types/auth';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const setCurrentUser = useCurrentUserStore((state) => state.setCurrentUser);
   const formApiRef = React.useRef<FormApi<LoginParams>>();
+
+  const redirectPath = searchParams.get(REDIRECT);
+
+  console.log(redirectPath);
 
   const { isPending, mutateAsync } = useMutation({
     mutationKey: [QUERY.LOGIN],
@@ -27,8 +33,12 @@ const LoginPage = () => {
 
       Toast.success({ theme: 'light', content: '登录成功，欢迎回来~' });
 
-      // 跳转到首页
-      navigate(PATH.HOME);
+      if (redirectPath) {
+        navigate(redirectPath);
+      } else {
+        // 跳转到首页
+        navigate(PATH.HOME);
+      }
     },
   });
 

@@ -1,12 +1,12 @@
-export interface ResponseStruct<T> {
+export type ResponseStruct<T> = {
   code: number;
   msg: string;
   data: T;
-}
+};
 
-export interface ResponseTotalStruct<K> extends ResponseStruct<K> {
+export type ResponseTotalStruct<K> = ResponseStruct<K> & {
   total: number;
-}
+};
 
 export type Model = {
   id: string;

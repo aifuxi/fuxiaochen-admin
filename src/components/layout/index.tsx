@@ -18,14 +18,15 @@ const navbarNavItems: NavItemProps[] = [
 
 const sidebarNavItems: NavItemProps[] = [
   { itemKey: PATH.HOME, text: '首页', icon: <IconIntro /> },
-  { itemKey: PATH.POST, text: '文章', icon: <IconForm /> },
+  { itemKey: PATH.POST, text: '文章列表', icon: <IconForm /> },
   { itemKey: PATH.CATEGORY, text: '文章分类', icon: <IconSteps /> },
   { itemKey: PATH.TAG, text: '文章标签', icon: <IconTag /> },
 ];
 
 const Layout = () => {
   const navigate = useNavigate();
-  const [selectedKeys, setSelectedKeys] = React.useState<string[]>([PATH.HOME]);
+  const initPath = location.pathname.replace(PATH.BASENAME, '') || PATH.HOME;
+  const [selectedKeys, setSelectedKeys] = React.useState<string[]>([initPath]);
 
   const handleSelect: NavProps['onSelect'] = (data) => {
     const itemKey = data.itemKey as string;

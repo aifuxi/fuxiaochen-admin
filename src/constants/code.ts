@@ -1,3 +1,7 @@
 export const CODE = {
   SUCCESS: 0,
+
+  TOKEN_NOT_FOUND: 10004,
+  INCORRECT_TOKEN: 10005,
+  INCORRECT_TOKEN_FORMAT: 10006,
 } as const;
