@@ -5,6 +5,9 @@ export const QUERY = {
 
   TAGS: 'tags',
   TAG: 'tag',
+
+  CATEGORIES: 'categories',
+  CATEGORY: 'category',
 } as const;
 
 export const queryClient = new QueryClient();

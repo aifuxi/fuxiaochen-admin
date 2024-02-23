@@ -18,7 +18,7 @@ type Props = {
   tagID: string;
 };
 
-const UpdateTagModal = NiceModal.create(({ tagID }: Props) => {
+export const UpdateTagModal = NiceModal.create(({ tagID }: Props) => {
   const modal = useModal();
   const formApiRef = React.useRef<FormApi<UpdateTagParams>>();
 
@@ -84,5 +84,3 @@ const UpdateTagModal = NiceModal.create(({ tagID }: Props) => {
     </Modal>
   );
 });
-
-export default UpdateTagModal;

@@ -12,7 +12,7 @@ import { QUERY } from '@/constants/query.ts';
 import { createTag } from '../services';
 import { CreateTagParams, UpdateTagParams } from '../types';
 
-const CreateTagModal = NiceModal.create(() => {
+export const CreateTagModal = NiceModal.create(() => {
   const modal = useModal();
   const formApiRef = React.useRef<FormApi<UpdateTagParams>>();
 
@@ -60,5 +60,3 @@ const CreateTagModal = NiceModal.create(() => {
     </Modal>
   );
 });
-
-export default CreateTagModal;

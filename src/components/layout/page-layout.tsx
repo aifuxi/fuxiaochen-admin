@@ -7,7 +7,7 @@ type Props = {
   title?: string;
 };
 
-const PageLayout = ({ children, title }: Props) => {
+export const PageLayout = ({ children, title }: Props) => {
   return (
     <div className="p-10 flex-1 flex flex-col">
       {title && <Typography.Title heading={4}>{title}</Typography.Title>}
@@ -15,5 +15,3 @@ const PageLayout = ({ children, title }: Props) => {
     </div>
   );
 };
-
-export default PageLayout;

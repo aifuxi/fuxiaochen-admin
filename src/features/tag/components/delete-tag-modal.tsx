@@ -13,7 +13,7 @@ type Props = {
   tag: Tag;
 };
 
-const DeleteTagModal = NiceModal.create(({ tag }: Props) => {
+export const DeleteTagModal = NiceModal.create(({ tag }: Props) => {
   const modal = useModal();
 
   const { mutateAsync, isPending } = useMutation({
@@ -38,5 +38,3 @@ const DeleteTagModal = NiceModal.create(({ tag }: Props) => {
     </Modal>
   );
 });
-
-export default DeleteTagModal;

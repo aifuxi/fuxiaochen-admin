@@ -1,4 +1,2 @@
-import AppLayout from './app-layout.tsx';
-import PageLayout from './page-layout.tsx';
-
-export { AppLayout, PageLayout };
+export * from './app-layout.tsx';
+export * from './page-layout.tsx';

@@ -38,6 +38,9 @@ dependencies:
   date-fns:
     specifier: ^3.3.1
     version: 3.3.1
+  immer:
+    specifier: ^10.0.3
+    version: 10.0.3
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -62,12 +65,15 @@ dependencies:
   tailwind-merge:
     specifier: ^2.2.1
     version: 2.2.1
+  use-immer:
+    specifier: ^0.9.0
+    version: 0.9.0(immer@10.0.3)(react@18.2.0)
   zod:
     specifier: ^3.22.4
     version: 3.22.4
   zustand:
     specifier: ^4.5.1
-    version: 4.5.1(@types/react@18.2.57)(react@18.2.0)
+    version: 4.5.1(@types/react@18.2.57)(immer@10.0.3)(react@18.2.0)
 
 devDependencies:
   '@commitlint/cli':
@@ -2566,6 +2572,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immer@10.0.3:
+    resolution: {integrity: sha512-pwupu3eWfouuaowscykeckFmVTpqbzW+rXFCX8rQLkZzM9ftBmU/++Ra+o+L27mz03zJTlyV4UUr+fdKNffo4A==}
+    dev: false
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -4112,6 +4122,16 @@ packages:
       punycode: 2.3.1
     dev: true
 
+  /use-immer@0.9.0(immer@10.0.3)(react@18.2.0):
+    resolution: {integrity: sha512-/L+enLi0nvuZ6j4WlyK0US9/ECUtV5v9RUbtxnn5+WbtaXYUaOBoKHDNL9I5AETdurQ4rIFIj/s+Z5X80ATyKw==}
+    peerDependencies:
+      immer: '>=2.0.0'
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      immer: 10.0.3
+      react: 18.2.0
+    dev: false
+
   /use-sync-external-store@1.2.0(react@18.2.0):
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
@@ -4260,7 +4280,7 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
-  /zustand@4.5.1(@types/react@18.2.57)(react@18.2.0):
+  /zustand@4.5.1(@types/react@18.2.57)(immer@10.0.3)(react@18.2.0):
     resolution: {integrity: sha512-XlauQmH64xXSC1qGYNv00ODaQ3B+tNPoy22jv2diYiP4eoDKr9LA+Bh5Bc3gplTrFdb6JVI+N4kc1DZ/tbtfPg==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -4276,6 +4296,7 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.2.57
+      immer: 10.0.3
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false

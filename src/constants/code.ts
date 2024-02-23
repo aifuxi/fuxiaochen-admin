@@ -5,3 +5,7 @@ export const CODE = {
   INCORRECT_TOKEN: 10005,
   INCORRECT_TOKEN_FORMAT: 10006,
 } as const;
+
+export const KEYBOARD_CODE = {
+  ENTER: 13,
+};

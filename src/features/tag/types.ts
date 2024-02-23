@@ -14,4 +14,4 @@ export type CreateTagParams = {
 
 export type UpdateTagParams = Partial<CreateTagParams>;
 
-export type GetTagsParams = PaginationParams;
+export type GetTagsParams = PaginationParams & { name?: string };
