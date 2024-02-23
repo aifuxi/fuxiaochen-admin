@@ -1,8 +1,9 @@
 import { stringifyParams } from '@/utils/helper';
 import { x } from '@/utils/request';
 
-import { Category, CreateCategoryParams, GetCategoriesParams, UpdateCategoryParams } from '@/types/category';
 import { ResponseStruct, ResponseTotalStruct } from '@/types/common';
+
+import { Category, CreateCategoryParams, GetCategoriesParams, UpdateCategoryParams } from './types';
 
 export const getCategories = (params: GetCategoriesParams): Promise<ResponseTotalStruct<Category[]>> => {
   return x.get(`/categories?${stringifyParams(params)}`);

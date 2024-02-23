@@ -9,10 +9,10 @@ import { semiModal } from '@/utils/helper.ts';
 
 import { QUERY } from '@/constants/query.ts';
 
-import { getTag, updateTag } from '@/services/tag.ts';
-import { UpdateTagParams } from '@/types/tag.ts';
-
 import { placeholder } from './skeleton.tsx';
+
+import { getTag, updateTag } from '../services';
+import { UpdateTagParams } from '../types';
 
 type Props = {
   tagID: string;

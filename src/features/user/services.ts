@@ -2,7 +2,8 @@ import { stringifyParams } from '@/utils/helper.ts';
 import { x } from '@/utils/request.ts';
 
 import { ResponseStruct, ResponseTotalStruct } from '@/types/common';
-import { CreateUserParams, GetUsersParams, UpdateUserParams, User } from '@/types/user';
+
+import { CreateUserParams, GetUsersParams, UpdateUserParams, User } from './types';
 
 export const getUsers = (params: GetUsersParams): Promise<ResponseTotalStruct<User[]>> => {
   return x.get(`/users?${stringifyParams(params)}`);

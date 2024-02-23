@@ -2,7 +2,8 @@ import { stringifyParams } from '@/utils/helper.ts';
 import { x } from '@/utils/request.ts';
 
 import { ResponseStruct, ResponseTotalStruct } from '@/types/common';
-import { CreateTagParams, GetTagsParams, Tag, UpdateTagParams } from '@/types/tag';
+
+import { CreateTagParams, GetTagsParams, Tag, UpdateTagParams } from './types.ts';
 
 export const getTags = (params: GetTagsParams): Promise<ResponseTotalStruct<Tag[]>> => {
   return x.get(`/tags?${stringifyParams(params)}`);

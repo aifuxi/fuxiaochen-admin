@@ -9,8 +9,8 @@ import { semiModal } from '@/utils/helper.ts';
 
 import { QUERY } from '@/constants/query.ts';
 
-import { createTag } from '@/services/tag.ts';
-import { CreateTagParams, UpdateTagParams } from '@/types/tag.ts';
+import { createTag } from '../services';
+import { CreateTagParams, UpdateTagParams } from '../types';
 
 const CreateTagModal = NiceModal.create(() => {
   const modal = useModal();

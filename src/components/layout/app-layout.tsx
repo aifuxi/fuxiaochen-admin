@@ -23,7 +23,7 @@ const sidebarNavItems: NavItemProps[] = [
   { itemKey: PATH.TAG, text: '文章标签', icon: <IconTag /> },
 ];
 
-const Layout = () => {
+const AppLayout = () => {
   const navigate = useNavigate();
   const initPath = location.pathname.replace(PATH.BASENAME, '') || PATH.HOME;
   const [selectedKeys, setSelectedKeys] = React.useState<string[]>([initPath]);
@@ -75,4 +75,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default AppLayout;

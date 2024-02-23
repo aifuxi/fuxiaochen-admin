@@ -6,13 +6,14 @@ import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useMutation } from '@tanstack/react-query';
 import { isUndefined } from 'lodash-es';
 
-import { PATH } from '@/constants/path';
-import { QUERY } from '@/constants/query';
+import { PATH } from '@/constants/path.ts';
+import { QUERY } from '@/constants/query.ts';
 import { REDIRECT } from '@/constants/unknown.ts';
 
-import { login } from '@/services/auth';
-import { useCurrentUserStore } from '@/stores/current-user';
-import { LoginParams } from '@/types/auth';
+import { useCurrentUserStore } from '@/stores/current-user.ts';
+
+import { login } from './services.ts';
+import { LoginParams } from './types.ts';
 
 const LoginPage = () => {
   const navigate = useNavigate();

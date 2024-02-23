@@ -11,10 +11,12 @@ import { queryClient } from '@/constants/query.ts';
 import { DEFAULT_PAGINATION_PARAMS } from '@/constants/unknown.ts';
 
 import PageLayout from '@/components/layout/page-layout';
-import { useGetTags } from '@/hooks/use-get-tags.ts';
-import CreateTagModal from '@/pages/tag/create-tag-modal.tsx';
-import UpdateTagModal from '@/pages/tag/update-tag-modal.tsx';
-import { GetTagsParams, Tag } from '@/types/tag.ts';
+import CreateTagModal from '@/features/tag/components/create-tag-modal.tsx';
+import DeleteTagModal from '@/features/tag/components/delete-tag-modal.tsx';
+import UpdateTagModal from '@/features/tag/components/update-tag-modal.tsx';
+
+import { useGetTags } from './hooks';
+import { GetTagsParams, Tag } from './types';
 
 const TagListPage = () => {
   const [params, setParams] = React.useState<GetTagsParams>({ ...DEFAULT_PAGINATION_PARAMS });
@@ -32,6 +34,11 @@ const TagListPage = () => {
 
   const handleEditTag = async (record: Tag) => {
     await NiceModal.show(UpdateTagModal, { tagID: record.id });
+    await invalidateQueries();
+  };
+
+  const handleDeleteTag = async (record: Tag) => {
+    await NiceModal.show(DeleteTagModal, { tag: record });
     await invalidateQueries();
   };
 
@@ -68,7 +75,9 @@ const TagListPage = () => {
         return (
           <ButtonGroup theme="borderless">
             <Button onClick={() => handleEditTag(record)}>编辑</Button>
-            <Button type="danger">删除</Button>
+            <Button type="danger" onClick={() => handleDeleteTag(record)}>
+              删除
+            </Button>
           </ButtonGroup>
         );
       },
