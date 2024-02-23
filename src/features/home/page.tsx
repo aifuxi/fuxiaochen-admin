@@ -1,9 +1,9 @@
 import { IllustrationConstruction, IllustrationConstructionDark } from '@douyinfe/semi-illustrations';
 import { Empty } from '@douyinfe/semi-ui';
 
-import PageLayout from '@/components/layout/page-layout';
+import { PageLayout } from '@/components/layout';
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <PageLayout title="首页">
       <div className="w-full h-full grid place-content-center">
@@ -17,5 +17,3 @@ const HomePage = () => {
     </PageLayout>
   );
 };
-
-export default HomePage;

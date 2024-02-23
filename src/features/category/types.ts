@@ -11,4 +11,4 @@ export type CreateCategoryParams = {
 };
 
 export type UpdateCategoryParams = Partial<CreateCategoryParams>;
-export type GetCategoriesParams = PaginationParams;
+export type GetCategoriesParams = PaginationParams & { name?: string };

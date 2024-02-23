@@ -1,3 +1,1 @@
-import HomePage from './page';
-
-export { HomePage };
+export * from './page.tsx';

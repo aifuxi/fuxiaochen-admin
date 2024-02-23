@@ -1,5 +1,4 @@
-import TagListPage from './page';
 import { Tag } from './types';
 
-export { TagListPage };
+export * from './page';
 export type { Tag };

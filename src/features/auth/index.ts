@@ -1,3 +1,1 @@
-import LoginPage from './login/page.tsx';
-
-export { LoginPage };
+export * from './login';

@@ -6,19 +6,19 @@ import { PageLayout } from '@/components/layout';
 
 import { SearchForm, SearchTable } from './components';
 import { defaultParams } from './config.ts';
-import { useGetTags } from './hooks';
-import { GetTagsParams } from './types';
+import { useGetCategories } from './hooks';
+import { GetCategoriesParams } from './types';
 
-export const TagListPage = () => {
-  const [params, updateParams] = useImmer<GetTagsParams>(defaultParams);
-  const { data, isLoading, queryKey } = useGetTags(params);
+export const CategoryListPage = () => {
+  const [params, updateParams] = useImmer<GetCategoriesParams>(defaultParams);
+  const { data, isLoading, queryKey } = useGetCategories(params);
 
   const invalidateQueries = async () => {
     await queryClient.invalidateQueries({ queryKey });
   };
 
   return (
-    <PageLayout title="文章标签">
+    <PageLayout title="文章分类">
       <div className="grid grid-cols-1 gap-y-3">
         <SearchForm invalidateQueries={invalidateQueries} updateParams={updateParams} />
 
