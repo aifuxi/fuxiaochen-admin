@@ -1,17 +1,21 @@
 import * as React from 'react';
 
-import { Form, Modal, Skeleton, Toast } from '@douyinfe/semi-ui';
+import { Button, Form, Modal, Skeleton, Toast } from '@douyinfe/semi-ui';
 import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import NiceModal, { useModal } from '@ebay/nice-modal-react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import { semiModal } from '@/utils/helper.ts';
+import { formatSlug } from '@/utils/slugify.ts';
 
 import { QUERY } from '@/constants/query.ts';
+import { REGEX } from '@/constants/regex.ts';
+
+import { useGetCategory } from '@/features/category/hooks.ts';
 
 import { placeholder } from './skeleton.tsx';
 
-import { getCategory, updateCategory } from '../services';
+import { updateCategory } from '../services';
 import { UpdateCategoryParams } from '../types';
 
 type Props = {
@@ -22,27 +26,16 @@ export const UpdateCategoryModal = NiceModal.create(({ categoryID }: Props) => {
   const modal = useModal();
   const formApiRef = React.useRef<FormApi<UpdateCategoryParams>>();
 
-  const { data, isLoading } = useQuery({
-    queryKey: [QUERY.CATEGORY, categoryID],
-    queryFn: () => getCategory(categoryID),
-    staleTime: 0,
-  });
+  const { data, isLoading, invalidateQueries } = useGetCategory(categoryID);
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: [QUERY.CATEGORY, categoryID],
     mutationFn: (req: UpdateCategoryParams) => updateCategory(categoryID, req),
-    onSuccess() {
+    async onSuccess() {
       Toast.success({ theme: 'light', content: '操作成功' });
+      await invalidateQueries();
     },
   });
-
-  const handleOk = async () => {
-    await formApiRef.current?.validate();
-    const values = formApiRef.current?.getValues() as UpdateCategoryParams;
-    await mutateAsync(values);
-    modal.resolve();
-    await modal.hide();
-  };
 
   return (
     <Modal title="编辑文章分类" {...semiModal(modal)} okButtonProps={{ loading: isPending }} onOk={handleOk}>
@@ -68,11 +61,31 @@ export const UpdateCategoryModal = NiceModal.create(({ categoryID }: Props) => {
             field="slug"
             label="slug"
             placeholder="请输入slug"
-            rules={[{ required: true, message: 'slug必填' }]}
+            rules={[{ pattern: REGEX.SLUG, message: '只允许输入数字、小写字母和-，并且不能以-开头和结尾' }]}
             showClear
+            suffix={
+              <Button onClick={handleSlugify} theme="solid">
+                格式化
+              </Button>
+            }
           />
         </Form>
       </Skeleton>
     </Modal>
   );
+
+  async function handleOk() {
+    await formApiRef.current?.validate();
+    const values = formApiRef.current?.getValues() as UpdateCategoryParams;
+    await mutateAsync(values);
+    modal.resolve();
+    await modal.hide();
+  }
+
+  function handleSlugify() {
+    let slug = formApiRef.current?.getValue('slug');
+    slug = formatSlug(slug);
+
+    formApiRef.current?.setValue('slug', slug);
+  }
 });

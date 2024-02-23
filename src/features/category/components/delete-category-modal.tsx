@@ -24,12 +24,6 @@ export const DeleteCategoryModal = NiceModal.create(({ category }: Props) => {
     },
   });
 
-  const handleOk = async () => {
-    await mutateAsync();
-    modal.resolve();
-    await modal.hide();
-  };
-
   return (
     <Modal title="删除文章标签" {...semiModal(modal)} okButtonProps={{ loading: isPending }} onOk={handleOk}>
       <Typography.Paragraph>
@@ -37,4 +31,10 @@ export const DeleteCategoryModal = NiceModal.create(({ category }: Props) => {
       </Typography.Paragraph>
     </Modal>
   );
+
+  async function handleOk() {
+    await mutateAsync();
+    modal.resolve();
+    await modal.hide();
+  }
 });

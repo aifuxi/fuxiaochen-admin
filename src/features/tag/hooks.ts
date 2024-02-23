@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { QUERY } from '@/constants/query.ts';
+import { QUERY, queryClient } from '@/constants/query.ts';
 
-import { getTags } from './services';
+import { getTag, getTags } from './services';
 import { GetTagsParams } from './types';
 
 export const useGetTags = (params: GetTagsParams) => {
@@ -12,5 +12,23 @@ export const useGetTags = (params: GetTagsParams) => {
     queryFn: () => getTags(params),
   });
 
-  return { isLoading, data, isError, queryKey };
+  const invalidateQueries = async () => {
+    await queryClient.invalidateQueries({ queryKey });
+  };
+
+  return { isLoading, data, isError, queryKey, invalidateQueries };
+};
+
+export const useGetTag = (id: string) => {
+  const queryKey = [QUERY.CATEGORY, id];
+  const { data, isLoading, isError } = useQuery({
+    queryKey,
+    queryFn: () => getTag(id),
+  });
+
+  const invalidateQueries = async () => {
+    await queryClient.invalidateQueries({ queryKey });
+  };
+
+  return { isLoading, data, isError, queryKey, invalidateQueries };
 };

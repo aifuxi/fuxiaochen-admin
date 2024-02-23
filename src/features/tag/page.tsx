@@ -1,7 +1,5 @@
 import { useImmer } from 'use-immer';
 
-import { queryClient } from '@/constants/query.ts';
-
 import { PageLayout } from '@/components/layout';
 
 import { SearchForm, SearchTable } from './components';
@@ -11,11 +9,7 @@ import { GetTagsParams } from './types';
 
 export const TagListPage = () => {
   const [params, updateParams] = useImmer<GetTagsParams>(defaultParams);
-  const { data, isLoading, queryKey } = useGetTags(params);
-
-  const invalidateQueries = async () => {
-    await queryClient.invalidateQueries({ queryKey });
-  };
+  const { data, isLoading, invalidateQueries } = useGetTags(params);
 
   return (
     <PageLayout title="文章标签">
