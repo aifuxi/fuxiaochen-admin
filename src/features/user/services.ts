@@ -1,7 +1,7 @@
 import { stringifyParams } from '@/utils/helper.ts';
 import { x } from '@/utils/request.ts';
 
-import { ResponseStruct, ResponseTotalStruct } from '@/types/common';
+import { ResponseStruct, ResponseTotalStruct } from '@/types';
 
 import { CreateUserParams, GetUsersParams, UpdateUserParams, User } from './types';
 

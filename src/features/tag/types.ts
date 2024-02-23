@@ -1,4 +1,4 @@
-import { Model, PaginationParams } from '@/types/common';
+import { Model, PaginationParams } from '@/types';
 
 export type Tag = Model & {
   name: string;

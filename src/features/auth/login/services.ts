@@ -1,6 +1,6 @@
 import { x } from '@/utils/request.ts';
 
-import { ResponseStruct } from '@/types/common.ts';
+import { ResponseStruct } from '@/types';
 
 import { LoginParams, LoginResponse } from './types.ts';
 

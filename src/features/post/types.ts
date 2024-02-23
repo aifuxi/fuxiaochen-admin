@@ -1,6 +1,6 @@
 import { Category } from '@/features/category';
 import { Tag } from '@/features/tag';
-import { Model, PaginationParams } from '@/types/common';
+import { Model, PaginationParams } from '@/types';
 
 export type Post = Model & {
   title: string;

@@ -1,7 +1,7 @@
 import { stringifyParams } from '@/utils/helper';
 import { x } from '@/utils/request';
 
-import { ResponseStruct, ResponseTotalStruct } from '@/types/common';
+import { ResponseStruct, ResponseTotalStruct } from '@/types';
 
 import { Category, CreateCategoryParams, GetCategoriesParams, UpdateCategoryParams } from './types';
 
