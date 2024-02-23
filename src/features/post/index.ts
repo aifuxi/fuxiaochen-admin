@@ -1,3 +1,1 @@
-import { CreateUserParams, GetUsersParams, UpdateUserParams, User } from './types';
-
-export type { User, GetUsersParams, UpdateUserParams, CreateUserParams };
+export { PostListPage, CreatePostPage, EditPostPage } from './pages';

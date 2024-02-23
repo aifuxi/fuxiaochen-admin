@@ -1,7 +1,5 @@
 import { useImmer } from 'use-immer';
 
-import { queryClient } from '@/constants/query.ts';
-
 import { PageLayout } from '@/components/layout';
 
 import { SearchForm, SearchTable } from './components';
@@ -11,11 +9,7 @@ import { GetCategoriesParams } from './types';
 
 export const CategoryListPage = () => {
   const [params, updateParams] = useImmer<GetCategoriesParams>(defaultParams);
-  const { data, isLoading, queryKey } = useGetCategories(params);
-
-  const invalidateQueries = async () => {
-    await queryClient.invalidateQueries({ queryKey });
-  };
+  const { data, isLoading, invalidateQueries } = useGetCategories(params);
 
   return (
     <PageLayout title="文章分类">

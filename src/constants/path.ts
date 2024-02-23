@@ -22,4 +22,8 @@ export const PATH = {
 
   // 文章页
   POST: '/posts',
+  // 创建文章页
+  POST_CREATE: '/posts/create',
+  // 编辑文章页
+  POST_EDIT: '/posts/edit',
 } as const;

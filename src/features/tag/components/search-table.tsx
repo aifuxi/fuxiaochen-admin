@@ -5,7 +5,6 @@ import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import NiceModal from '@ebay/nice-modal-react';
 import { Updater } from 'use-immer';
 
-import '@/components/text';
 import { DateText, HyphenText } from '@/components/text';
 
 import { DeleteTagModal } from './delete-tag-modal.tsx';

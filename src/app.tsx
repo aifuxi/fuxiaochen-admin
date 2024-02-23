@@ -11,6 +11,7 @@ import { AppLayout } from '@/components/layout';
 import { LoginPage } from '@/features/auth';
 import { CategoryListPage } from '@/features/category';
 import { HomePage } from '@/features/home';
+import { CreatePostPage, EditPostPage, PostListPage } from '@/features/post';
 import { TagListPage } from '@/features/tag';
 
 export const App = () => {
@@ -22,8 +23,14 @@ export const App = () => {
             <Route path={PATH.LOGIN} element={<LoginPage />}></Route>
             <Route element={<AppLayout />}>
               <Route path={PATH.HOME} element={<HomePage />}></Route>
+
               <Route path={PATH.TAG} element={<TagListPage />}></Route>
+
               <Route path={PATH.CATEGORY} element={<CategoryListPage />}></Route>
+
+              <Route path={PATH.POST} element={<PostListPage />}></Route>
+              <Route path={PATH.POST_CREATE} element={<CreatePostPage />}></Route>
+              <Route path={`${PATH.POST_EDIT}/:id`} element={<EditPostPage />}></Route>
 
               {/*兜底路由，所有未匹配到的路由显示HomePage*/}
               <Route path="*" element={<HomePage />} />

@@ -14,6 +14,7 @@ export type Post = Model & {
   secret?: string;
   tags?: Tag[];
   category?: Category;
+  categoryID?: string;
 };
 
 export type CreatePostParams = {
@@ -32,4 +33,4 @@ export type CreatePostParams = {
 
 export type UpdatePostParams = Partial<CreatePostParams>;
 
-export type GetPostsParams = PaginationParams;
+export type GetPostsParams = PaginationParams & { title?: string };

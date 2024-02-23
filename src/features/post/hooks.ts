@@ -2,14 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 
 import { QUERY, queryClient } from '@/constants/query.ts';
 
-import { getTag, getTags } from './services';
-import { GetTagsParams } from './types';
+import { getPost, getPosts } from './services';
+import { GetPostsParams } from './types';
 
-export const useGetTags = (params: GetTagsParams) => {
-  const queryKey = [QUERY.TAGS, params];
+export const useGetPosts = (params: GetPostsParams) => {
+  const queryKey = [QUERY.POSTS, params];
   const { isLoading, data, isError } = useQuery({
     queryKey,
-    queryFn: () => getTags(params),
+    queryFn: () => getPosts(params),
   });
 
   const invalidateQueries = async () => {
@@ -19,11 +19,11 @@ export const useGetTags = (params: GetTagsParams) => {
   return { isLoading, data, isError, queryKey, invalidateQueries };
 };
 
-export const useGetTag = (id: string) => {
-  const queryKey = [QUERY.TAG, id];
+export const useGetPost = (id: string) => {
+  const queryKey = [QUERY.POST, id];
   const { data, isLoading, isError } = useQuery({
     queryKey,
-    queryFn: () => getTag(id),
+    queryFn: () => getPost(id),
   });
 
   const invalidateQueries = async () => {

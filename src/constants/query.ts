@@ -8,6 +8,9 @@ export const QUERY = {
 
   CATEGORIES: 'categories',
   CATEGORY: 'category',
+
+  POSTS: 'posts',
+  POST: 'post',
 } as const;
 
 export const queryClient = new QueryClient();

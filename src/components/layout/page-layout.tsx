@@ -4,7 +4,7 @@ import { Typography } from '@douyinfe/semi-ui';
 
 type Props = {
   children: React.ReactNode;
-  title?: string;
+  title?: React.ReactNode;
 };
 
 export const PageLayout = ({ children, title }: Props) => {
