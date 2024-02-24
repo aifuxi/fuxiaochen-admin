@@ -12,11 +12,11 @@ import { QUERY } from '@/constants/query.ts';
 import { REGEX } from '@/constants/regex.ts';
 
 import { createCategory } from '../services';
-import { CreateCategoryParams, UpdateCategoryParams } from '../types';
+import { CreateCategoryParams } from '../types';
 
 export const CreateCategoryModal = NiceModal.create(() => {
   const modal = useModal();
-  const formApiRef = React.useRef<FormApi<UpdateCategoryParams>>();
+  const formApiRef = React.useRef<FormApi<CreateCategoryParams>>();
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: [QUERY.CATEGORY],
