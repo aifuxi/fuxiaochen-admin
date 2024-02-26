@@ -9,6 +9,8 @@ import { NavItemProps } from '@douyinfe/semi-ui/lib/es/navigation/Item';
 
 import { PATH } from '@/constants/path';
 
+import { useMount } from '@/hooks';
+
 const navbarNavItems: NavItemProps[] = [
   { itemKey: 'Home', text: 'Home' },
   { itemKey: 'Dashboard', text: 'Dashboard' },
@@ -26,7 +28,7 @@ const sidebarNavItems: NavItemProps[] = [
 export const AppLayout = () => {
   const navigate = useNavigate();
   const initPath = location.pathname.replace(PATH.BASENAME, '') || PATH.HOME;
-  const [selectedKeys, setSelectedKeys] = React.useState<string[]>([initPath]);
+  const [selectedKeys, setSelectedKeys] = React.useState<string[]>([]);
 
   const handleSelect: NavProps['onSelect'] = (data) => {
     const itemKey = data.itemKey as string;
@@ -34,6 +36,10 @@ export const AppLayout = () => {
     setSelectedKeys([itemKey]);
     navigate(itemKey);
   };
+
+  useMount(() => {
+    setSelectedKeys([initPath]);
+  });
 
   return (
     <div className="flex flex-col h-screen w-screen">
