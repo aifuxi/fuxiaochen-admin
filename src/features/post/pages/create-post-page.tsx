@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Button, Form } from '@douyinfe/semi-ui';
+import { IconPlus } from '@douyinfe/semi-icons';
+import { Button, Form, Upload } from '@douyinfe/semi-ui';
 import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import NiceModal from '@ebay/nice-modal-react';
 
@@ -27,6 +28,19 @@ export const CreatePostPage = () => {
 
   return (
     <PageLayout title="创建文章">
+      <Upload
+        action={'/admin-api/v1/upload'}
+        listType="picture"
+        accept="image/*"
+        limit={1}
+        defaultFileList={[]}
+        picHeight={110}
+        picWidth={200}
+      >
+        <IconPlus size="extra-large" style={{ margin: 4 }} />
+        点击添加图片
+      </Upload>
+
       <Form autoComplete="off" getFormApi={(formApi) => (formApiRef.current = formApi)}>
         {({ formState }) => (
           <React.Fragment>
