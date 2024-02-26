@@ -1,5 +1,4 @@
-import { Category } from './types';
-
 export * from './page';
-
-export type { Category };
+export * from './hooks';
+export * from './components';
+export * from './types';

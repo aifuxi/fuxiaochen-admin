@@ -1,4 +1,4 @@
-import { Tag } from './types';
-
 export * from './page';
-export type { Tag };
+export * from './hooks';
+export * from './components';
+export * from './types';

@@ -1,3 +1,4 @@
-export * from './page.tsx';
-export * from './types.ts';
-export * from './services.ts';
+export * from './page';
+export * from './types';
+export * from './services';
+export * from './compoents';

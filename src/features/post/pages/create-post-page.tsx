@@ -1,24 +1,30 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { IconPlus } from '@douyinfe/semi-icons';
-import { Button, Form, Upload } from '@douyinfe/semi-ui';
+import { Button, Form, Toast } from '@douyinfe/semi-ui';
 import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import NiceModal from '@ebay/nice-modal-react';
+import { useMutation } from '@tanstack/react-query';
+import { isUndefined } from 'lodash-es';
 
 import { formatSlug } from '@/utils/slugify.ts';
 
+import { PATH } from '@/constants/path.ts';
+import { QUERY } from '@/constants/query.ts';
 import { REGEX } from '@/constants/regex.ts';
 
+import { UploadField } from '@/components/form';
 import { PageLayout } from '@/components/layout';
-import { CreateCategoryModal } from '@/features/category/components';
-import { useGetCategories } from '@/features/category/hooks.ts';
-import { POST_STATUS_ENUM, postStatusOptions, postTypeOptions } from '@/features/post/config.tsx';
-import { CreateTagModal } from '@/features/tag/components';
-import { useGetTags } from '@/features/tag/hooks.ts';
+import { CreateCategoryModal, useGetCategories } from '@/features/category';
+import { CreateTagModal, useGetTags } from '@/features/tag';
 
+import { POST_STATUS_ENUM, postStatusOptions, postTypeOptions } from '../config';
+import { createPost } from '../services.ts';
 import { CreatePostParams } from '../types.ts';
 
 export const CreatePostPage = () => {
+  const navigate = useNavigate();
+
   const formApiRef = React.useRef<FormApi<CreatePostParams>>();
   const { data: getTagsData, invalidateQueries: invalidateGetTagsQueries } = useGetTags({ page: 1, limit: 100 });
   const { data: getCategoriesData, invalidateQueries: invalidateGetCategoriesQueries } = useGetCategories({
@@ -26,26 +32,22 @@ export const CreatePostPage = () => {
     limit: 100,
   });
 
+  const { isPending, mutateAsync } = useMutation({
+    mutationKey: [QUERY.POST],
+    mutationFn: createPost,
+    onSuccess() {
+      Toast.success({ theme: 'light', content: '创建成功' });
+      navigate(PATH.POST);
+    },
+  });
+
   return (
     <PageLayout title="创建文章">
-      <Upload
-        action={'/admin-api/v1/upload'}
-        listType="picture"
-        accept="image/*"
-        limit={1}
-        defaultFileList={[]}
-        picHeight={110}
-        picWidth={200}
-      >
-        <IconPlus size="extra-large" style={{ margin: 4 }} />
-        点击添加图片
-      </Upload>
-
       <Form autoComplete="off" getFormApi={(formApi) => (formApiRef.current = formApi)}>
         {({ formState }) => (
           <React.Fragment>
             <Form.Input
-              field="name"
+              field="title"
               label="文章标题"
               placeholder="请输入文章标题"
               rules={[{ required: true, message: '文章标题必填' }]}
@@ -66,6 +68,7 @@ export const CreatePostPage = () => {
                 </Button>
               }
             />
+            <UploadField field="cover" label="文章封面" />
             <Form.TextArea
               field="desc"
               label="文章描述"
@@ -158,6 +161,21 @@ export const CreatePostPage = () => {
                 ></Form.Select.Option>
               ))}
             </Form.Select>
+
+            <Form.TextArea
+              field="body"
+              label="文章内容"
+              placeholder="请输入文章内容"
+              rules={[{ required: true, message: '文章内容必填' }]}
+              autosize={{ minRows: 4, maxRows: 10 }}
+              showClear
+            />
+
+            <div className="fixed bottom-4 inset-x-1/3">
+              <Button block theme="solid" loading={isPending} onClick={handleCreatePost}>
+                创建
+              </Button>
+            </div>
           </React.Fragment>
         )}
       </Form>
@@ -185,5 +203,16 @@ export const CreatePostPage = () => {
 
     await NiceModal.show(CreateTagModal);
     await invalidateGetTagsQueries();
+  }
+
+  async function handleCreatePost() {
+    await formApiRef.current?.validate();
+    const values = formApiRef.current?.getValues();
+
+    if (isUndefined(values)) {
+      return;
+    }
+
+    await mutateAsync(values);
   }
 };
