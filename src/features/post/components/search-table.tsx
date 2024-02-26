@@ -35,6 +35,16 @@ export const SearchTable = ({ invalidateQueries, isLoading, total, data, params,
       render: (_, record) => <Typography.Text>{record.title}</Typography.Text>,
     },
     {
+      title: '封面',
+      render: (_, record) => {
+        if (!record.cover) {
+          return <HyphenText />;
+        }
+
+        return <img src={record.cover} alt={record.title} className="w-[120px] h-auto" />;
+      },
+    },
+    {
       title: '描述',
       render: (_, record) => <Typography.Text>{record.desc}</Typography.Text>,
     },

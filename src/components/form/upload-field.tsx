@@ -8,7 +8,6 @@ import { getBearerToken } from '@/utils/helper.ts';
 
 import { CODE } from '@/constants/code.ts';
 
-import { useMount } from '@/hooks';
 import { useCurrentUserStore } from '@/stores/current-user.ts';
 import { ResponseStruct } from '@/types';
 
@@ -21,10 +20,12 @@ const CustomerUpload = ({ onChange, value }: WithFieldProps) => {
   const [fileList, setFileList] = React.useState<FileItem[]>([]);
   const token = useCurrentUserStore((state) => state.token);
 
-  useMount(() => {
+  React.useEffect(() => {
     if (!value) {
+      console.log('kong');
       setFileList([]);
     } else {
+      console.log('you');
       setFileList([
         {
           url: value,
@@ -36,7 +37,7 @@ const CustomerUpload = ({ onChange, value }: WithFieldProps) => {
         },
       ]);
     }
-  });
+  }, [value]);
 
   const handleChange: UploadProps['onChange'] = ({ currentFile, fileList }) => {
     if (!fileList.length) {
@@ -103,14 +104,14 @@ const CustomerUpload = ({ onChange, value }: WithFieldProps) => {
 
   function handleInputChange(v: string) {
     onChange?.(v);
-    if (!value) {
+    if (!v) {
       setFileList([]);
     } else {
       setFileList([
         {
           url: value,
           uid: `${Date.now()}`,
-          name: value,
+          name: v,
           status: 'success',
           size: 'unknown',
           preview: true,

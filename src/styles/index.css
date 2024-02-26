@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /*
 * 解决 Semi 按钮组件和 TailwindCSS 存在样式冲突
 * 通过提高css样式权重来解决的
@@ -10,6 +11,15 @@
 .semi-button-primary:not(.semi-button-light):not(.semi-button-borderless) {
   background-color: var(--semi-color-primary);
 }
+
 .semi-button-light:not(.semi-button-borderless) {
   background-color: var(--semi-color-fill-0);
+}
+
+.bytemd {
+  @apply !min-h-screen;
+}
+
+.markdown-body {
+  @apply prose w-full dark:prose-invert;
 }

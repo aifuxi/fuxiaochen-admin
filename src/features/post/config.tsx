@@ -36,7 +36,7 @@ export const postTypeMap: Record<number, React.ReactNode> = {
 };
 
 export const postStatusMap: Record<number, React.ReactNode> = {
-  [POST_STATUS_ENUM.PUBLISHED]: <SemiTag color="teal">已发布</SemiTag>,
+  [POST_STATUS_ENUM.PUBLISHED]: <SemiTag color="teal">发布</SemiTag>,
   [POST_STATUS_ENUM.DRAFT]: <SemiTag color="grey">草稿</SemiTag>,
   [POST_STATUS_ENUM.SECRET]: <SemiTag color="orange">加密</SemiTag>,
 };

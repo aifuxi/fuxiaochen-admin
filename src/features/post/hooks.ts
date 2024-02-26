@@ -23,6 +23,7 @@ export const useGetPost = (id: string) => {
   const queryKey = [QUERY.POST, id];
   const { data, isLoading, isError } = useQuery({
     queryKey,
+    enabled: Boolean(id),
     queryFn: () => getPost(id),
   });
 
