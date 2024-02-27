@@ -32,10 +32,12 @@ export const SearchTable = ({ invalidateQueries, isLoading, total, data, params,
   const columns: ColumnProps<Post>[] = [
     {
       title: '标题',
-      render: (_, record) => <Typography.Text>{record.title}</Typography.Text>,
+      width: 180,
+      render: (_, record) => <Typography.Text ellipsis={{ showTooltip: true }}>{record.title}</Typography.Text>,
     },
     {
       title: '封面',
+      width: 180,
       render: (_, record) => {
         if (!record.cover) {
           return <HyphenText />;
@@ -46,30 +48,36 @@ export const SearchTable = ({ invalidateQueries, isLoading, total, data, params,
     },
     {
       title: '描述',
-      render: (_, record) => <Typography.Text>{record.desc}</Typography.Text>,
+      width: 180,
+      render: (_, record) => <Typography.Text ellipsis={{ showTooltip: true }}>{record.desc}</Typography.Text>,
     },
     {
       title: '作者',
+      width: 120,
       render: (_, record) => <Typography.Text>{record.author}</Typography.Text>,
     },
     {
       title: 'slug',
-      render: (_, record) => <Typography.Text>{record.slug}</Typography.Text>,
+      width: 180,
+      render: (_, record) => <Typography.Text ellipsis={{ showTooltip: true }}>{record.slug}</Typography.Text>,
     },
     {
       title: '类型',
+      width: 120,
       render: (_, record) => {
         return postTypeMap[record.type] ?? <HyphenText />;
       },
     },
     {
       title: '状态',
+      width: 120,
       render: (_, record) => {
         return postStatusMap[record.status] ?? <HyphenText />;
       },
     },
     {
       title: '文章标签',
+      width: 200,
       render: (_, record) => {
         if (!record?.tags?.length) {
           return <HyphenText />;
@@ -88,15 +96,18 @@ export const SearchTable = ({ invalidateQueries, isLoading, total, data, params,
     },
     {
       title: '创建时间',
+      width: 180,
       render: (_, record) => <DateText date={record.createdAt} />,
     },
     {
       title: '更新时间',
+      width: 180,
       render: (_, record) => <DateText date={record.updatedAt} />,
     },
     {
       title: '操作',
       fixed: 'right',
+      width: 180,
       render: (_, record) => {
         return (
           <ButtonGroup theme="borderless">
@@ -114,6 +125,7 @@ export const SearchTable = ({ invalidateQueries, isLoading, total, data, params,
     <Table
       columns={columns}
       loading={isLoading}
+      rowKey={(record) => record?.id ?? ''}
       scroll={scroll}
       dataSource={data}
       pagination={{

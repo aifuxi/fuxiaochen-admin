@@ -13,7 +13,8 @@ import { BytemdField } from '@/components/form/bytemd-field.tsx';
 import { CreateCategoryModal, useGetCategories } from '@/features/category';
 import { CreateTagModal, useGetTags } from '@/features/tag';
 
-import { POST_STATUS_ENUM, postStatusOptions, postTypeOptions } from '../config.tsx';
+import { POST_STATUS_ENUM, POST_TYPE_ENUM, postStatusOptions, postTypeOptions } from '../config.tsx';
+import { CreatePostParams } from '../types.ts';
 
 type Props = {
   formApiRef: React.MutableRefObject<FormApi | undefined>;
@@ -27,7 +28,13 @@ export const PostForm = ({ formApiRef }: Props) => {
   });
 
   return (
-    <Form autoComplete="off" getFormApi={(formApi) => (formApiRef.current = formApi)}>
+    <Form
+      autoComplete="off"
+      getFormApi={(formApi) => (formApiRef.current = formApi)}
+      initValues={
+        { author: '付小晨', type: POST_TYPE_ENUM.ORIGINAL, status: POST_STATUS_ENUM.PUBLISHED } as CreatePostParams
+      }
+    >
       {({ formState }) => (
         <React.Fragment>
           <Form.Input
@@ -43,7 +50,7 @@ export const PostForm = ({ formApiRef }: Props) => {
             placeholder="请输入slug"
             rules={[
               { required: true, message: 'slug必填' },
-              { pattern: REGEX.SLUG, message: '只允许输入数字、小写字母和-，并且不能以-开头和结尾' },
+              { pattern: REGEX.SLUG, message: '只允许输入数字、小写字母、”-“和“.”，并且不能以”-“或“.”开头和结尾' },
             ]}
             showClear
             suffix={

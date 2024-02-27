@@ -42,7 +42,7 @@ export const CreateTagModal = NiceModal.create(() => {
           placeholder="请输入slug"
           rules={[
             { required: true, message: 'slug必填' },
-            { pattern: REGEX.SLUG, message: '只允许输入数字、小写字母和-，并且不能以-开头和结尾' },
+            { pattern: REGEX.SLUG, message: '只允许输入数字、小写字母、”-“和“.”，并且不能以”-“或“.”开头和结尾' },
           ]}
           showClear
           suffix={

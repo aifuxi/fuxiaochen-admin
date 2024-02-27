@@ -62,7 +62,9 @@ export const UpdateTagModal = NiceModal.create(({ tagID }: Props) => {
             field="slug"
             label="slug"
             placeholder="请输入slug"
-            rules={[{ pattern: REGEX.SLUG, message: '只允许输入数字、小写字母和-，并且不能以-开头和结尾' }]}
+            rules={[
+              { pattern: REGEX.SLUG, message: '只允许输入数字、小写字母、”-“和“.”，并且不能以”-“或“.”开头和结尾' },
+            ]}
             showClear
             suffix={
               <Button onClick={handleSlugify} theme="solid">

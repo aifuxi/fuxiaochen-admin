@@ -2,14 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /*
 * 解决 Semi 按钮组件和 TailwindCSS 存在样式冲突
-* 通过提高css样式权重来解决的
+* 通过提高css样式权重来解决的 
 * 参考：https://github.com/DouyinFE/semi-design/issues/817 最后面的答案
+* TailwindCSS 通过标签选择器重置元素样式，这里再通过类选择器重新声明样式，提高css样式权重
 */
 .semi-button-primary:not(.semi-button-light):not(.semi-button-borderless) {
   background-color: var(--semi-color-primary);
+}
+
+.semi-button-danger:not(.semi-button-light):not(.semi-button-borderless) {
+  background-color: var(--semi-color-danger);
+}
+
+.semi-button-danger:not(.semi-button-light):not(.semi-button-borderless):hover {
+  background-color: var(--semi-color-danger-hover);
 }
 
 .semi-button-light:not(.semi-button-borderless) {
@@ -21,5 +29,5 @@
 }
 
 .markdown-body {
-  @apply prose w-full dark:prose-invert;
+  @apply prose prose-zinc w-full dark:prose-invert;
 }
